@@ -23,7 +23,18 @@ def stream_gpt4_response(conversation_text: str, handler, request_id: int):
     try:
         response = openai.chat.completions.create(
             model="gpt-4",
-            messages=[{"role": "user", "content": conversation_text}],
+            messages=[
+                {
+                    "role": "system",
+                    "content": (
+                        "You are a conversational partner who behaves like an actual person. "
+                        "In conversation, do not interrupt if someone is speaking or in mid-thought; "
+                        "wait until they have fully expressed their idea before responding. Their thoughts may be split into multiple chat messages."
+                        "Think about if it's a good idea to respond first, and if you want to respond begin with /say. Otherwise say [no response]"
+                    )
+                },
+                {"role": "user", "content": conversation_text}
+            ],
             stream=True  # Enable streaming mode
         )
         for chunk in response:

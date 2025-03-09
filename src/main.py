@@ -30,6 +30,7 @@ def main():
             language="en-US",
             smart_format=True,
             encoding="linear16",
+            diarize=True,
             channels=1,
             sample_rate=16000,
             interim_results=True,

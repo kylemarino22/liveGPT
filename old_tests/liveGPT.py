@@ -73,7 +73,7 @@ async def process_with_gpt4(force_response=False):
     # Prepare messages for GPT-4
     messages = [{"role": "system", "content": GPT_INSTRUCTION}]
     for line in conversation_history[-10:]:  # Send last 10 exchanges
-        messages.append({"role": "user", "content": line})
+        messages.append({"role": "User", "content": line})
 
     # Call GPT-4 API
     response = openai.ChatCompletion.create(
